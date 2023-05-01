@@ -1,0 +1,35 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="ikozm" id="01">
+        <createTable tableName="exchange_rate">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="currency" type="varchar(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="base_currency" type="varchar(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rate_sell" type="NUMERIC">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rate_buy" type="NUMERIC">
+                <constraints nullable="false"/>
+            </column>
+            <column name="exchange_rate_source" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="exchange_rate" indexName="unique_indez" unique="true">
+            <column name="exchange_rate_source"/>
+            <column name="date"/>
+            <column name="currency"/>
+            <column name="base_currency"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
